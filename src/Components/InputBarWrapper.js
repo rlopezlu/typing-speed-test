@@ -16,7 +16,12 @@ export default function InputBarWrapper(props){
       <Current
         words={props.words}
         wordSubmit={props.wordSubmit}
+        highlightInput={props.highlightInput}
+        refToInput={props.refToInput}
         currentIndex={props.currentIndex}
+        counting={props.counting}
+        blocked={props.blocked}
+        startCounter={props.startCounter}
       />
       <Next
         words={props.words}

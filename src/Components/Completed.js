@@ -27,11 +27,24 @@ export default function Completed(props){
     return correctWord === enteredWord ? "correct" : "wrong";
   }
 
+  //key is combination of expected word and user input (to avoid duplicate keys)
+  function getKey(index, word){
+    let checkedIndex;
+    if(props.currentIndex < amountToShow) {
+     checkedIndex = index
+    }  else {
+      checkedIndex = checkedIndex = index + props.currentIndex - amountToShow
+    }
+
+    let correctWord = props.words[checkedIndex]
+    return correctWord+word
+  }
+
   //TODO if mutliple miss spellings are the same, they will have the same key
   return(
     <div className="Completed">
       {getCompleted().map((word, index)  => {
-        return <span className={getColor(index)} key={word}>{word + " "}</span>
+        return <span className={getColor(index)} key={getKey(index, word)}>{word + " "}</span>
       })}
     </div>
   )

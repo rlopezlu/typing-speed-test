@@ -1,28 +1,30 @@
 .Current{
   /* color: #2980b9; */
-  min-width: 5%;
-  max-width: 15%;
-  background-color: grey;
+  /* min-width: 5%; */
+  max-width: 10%;
+  /* background-color: grey; */
   display: inline-block;
   /* position: absolute; */
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 .in-progress{
   color: black;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .done{
-  background-color: orange;
+  /* background-color: orange; */
 }
 
 input{
   border: 0px solid black;
-  border-width: 0 0 1px 0;
+  border-width: 0 0 0 0;
   outline-color: transparent;
   outline-style: none;
   width: 1%;
+  padding: 0;
+  margin: 0;
 }
 
 .wrong{

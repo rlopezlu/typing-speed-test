@@ -17,7 +17,20 @@ export default class Current extends Component{
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.blocked === true){
+      this.setState({
+        inputChars : "",
+        lastChar: '',
+        charIndex:0,
+        typingWord:'',
+        errorCount:0
+      })
+    }
+  }
+
   handleChange(e){
+    if(this.props.blocked) return;
     console.log("e.target.value ", e.target.value);
     let lastChar = e.target.value[e.target.value.length -1] || '';
     let typingWord = this.state.typingWord + lastChar;
@@ -33,28 +46,56 @@ export default class Current extends Component{
     })
 
     //if the char entered matches the expected char of the word
-    if(lastChar === currentWord.charAt(this.state.charIndex)){
-      if(this.state.errorCount === 0){
+    // if(lastChar === currentWord.charAt(this.state.charIndex)){
+    //   if(this.state.errorCount === 0){
+    //     this.setState({
+    //       charIndex: this.state.charIndex +1
+    //     })
+    //   } else{
+    //     this.setState({
+    //       errorCount: this.state.errorCount +1
+    //     })
+    //   }
+    // }
+    if(this.state.errorCount === 0){
+      if(this.props.counting === false){
+        this.props.startCounter()
+      }
+      if(lastChar === currentWord.charAt(this.state.charIndex)){
         this.setState({
-          charIndex: this.state.charIndex +1
+          charIndex: this.state.charIndex + 1
+        })
+      } else if(e.target.value === "" || lastChar ===" " || lastChar ===""){//reset
+        console.log("there was a space entered");
+        console.log(`'${lastChar}'`);
+        this.setState({
+          inputChars : "",
+          lastChar: '',
+          charIndex:0,
+          typingWord:"",
+          errorCount:0
         })
       } else{
         this.setState({
-          errorCount: this.state.errorCount +1
+          errorCount: this.state.errorCount + 1
         })
       }
-    } else if(e.target.value === "" || lastChar ===" " || lastChar ===""){//reset
-      console.log("there was a space entered");
-      console.log(`'${lastChar}'`);
-      this.setState({
-        inputChars : "",
-        lastChar: '',
-        charIndex:0,
-        typingWord:"",
-        errorCount:0
-      })
-    } else{
+    }
+    // else if(e.target.value === "" || lastChar ===" " || lastChar ===""){//reset
+    //   console.log("there was a space entered");
+    //   console.log(`'${lastChar}'`);
+    //   this.setState({
+    //     inputChars : "",
+    //     lastChar: '',
+    //     charIndex:0,
+    //     typingWord:"",
+    //     errorCount:0
+    //   })
+    // }
+     else{
+
       this.setState({errorCount: this.state.errorCount+1})
+
     }
   }
 
@@ -69,6 +110,7 @@ export default class Current extends Component{
   }
 
   handleKeyDown(e){
+    if(this.props.blocked) return
     let currentWord = this.props.words[this.props.currentIndex];
     if(e.key===' '){
       if(this.state.inputChars){//non empty input
@@ -108,13 +150,14 @@ export default class Current extends Component{
     return(
       <div
         className={"Current "+  this.getColor()}
-        onClick={this.handleClick}
+        onClick={this.props.highlightInput}
       >
         {/* <p onClick={this.handleClick} >Click me to start</p> */}
         <span className="done">{this.state.typingWord}</span>
         <input
           // placeholder={this.props.words[this.props.currentIndex]}
-          ref={(input) => { this.nameInput = input; }}
+          // ref={(input) => { this.nameInput = input }}
+          ref={(input) => this.props.refToInput(input)}
           onKeyDown={this.handleKeyDown}
           onChange={this.handleChange}
           value=""
