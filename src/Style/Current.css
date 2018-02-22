@@ -1,5 +1,20 @@
 .Current{
-  color: #2980b9;
+  /* color: #2980b9; */
+  min-width: 5%;
+  max-width: 15%;
+  background-color: grey;
+  display: inline-block;
+  /* position: absolute; */
+  margin-right: 2em;
+}
+
+.in-progress{
+  color: black;
+  background-color: yellow;
+}
+
+.done{
+  background-color: orange;
 }
 
 input{
@@ -7,4 +22,13 @@ input{
   border-width: 0 0 1px 0;
   outline-color: transparent;
   outline-style: none;
+  width: 1%;
+}
+
+.wrong{
+  color: red;
+}
+
+.correct{
+  color: #2980b9;
 }

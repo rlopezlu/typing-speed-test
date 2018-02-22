@@ -6,6 +6,7 @@ export default function Settings(props){
     <div className="Settings">
       <p>Time</p>
       <p>Difficulty</p>
+      <button onClick={props.startCounter}>Start</button>
     </div>
   )
 }

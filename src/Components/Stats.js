@@ -7,8 +7,8 @@ export default function Stats(props){
       <p>WPM</p>
       <p>Char/min</p>
       <p>Accuracy %</p>
-      <p>Time left</p>
-      <p>Time Elapsed</p>
+      <p>Time left {props.timeLeft}</p>
+      <p>Time Elapsed {props.elapsed}</p>
     </div>
   )
 }
