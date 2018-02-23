@@ -24,9 +24,10 @@ export default function InputBarWrapper(props){
           startCounter={props.startCounter}
         />
       </div>
-        <Next
+      <Next
         words={props.words}
         currentIndex={props.currentIndex}
+        blocked={props.blocked}
       />
     </div>
   )
