@@ -18,7 +18,7 @@ export default class Current extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.blocked === true){
+    if(nextProps.blocked === true || nextProps.counting === false){
       this.setState({
         inputChars : "",
         lastChar: '',
@@ -57,14 +57,18 @@ export default class Current extends Component{
     //     })
     //   }
     // }
+    //not currently in error state
     if(this.state.errorCount === 0){
+      //no timers running
       if(this.props.counting === false){
         this.props.startCounter()
       }
+      //char entered was correct
       if(lastChar === currentWord.charAt(this.state.charIndex)){
         this.setState({
           charIndex: this.state.charIndex + 1
         })
+        //char entered was a space, set up for next word
       } else if(e.target.value === "" || lastChar ===" " || lastChar ===""){//reset
         console.log("there was a space entered");
         console.log(`'${lastChar}'`);
@@ -92,10 +96,8 @@ export default class Current extends Component{
     //     errorCount:0
     //   })
     // }
-     else{
-
+     else{ //already in error state, stay in error state
       this.setState({errorCount: this.state.errorCount+1})
-
     }
   }
 

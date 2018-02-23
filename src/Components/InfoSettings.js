@@ -8,6 +8,9 @@ export default function InfoSettings(props){
       <Stats
         timeLeft={props.timeLeft}
         elapsed={props.initialTime - props.timeLeft}
+        countCorrect={props.countCorrect}
+        charsPerMin={props.charsPerMin}
+        wordsEntered={props.wordsEntered}
       />
       <Settings
         handleReset={props.handleReset}

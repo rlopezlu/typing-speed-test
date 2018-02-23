@@ -1,7 +1,8 @@
 .Completed{
-  overflow: visible;
-  min-width: 30%;
-  display: inline-block;
+  overflow: hidden;
+  flex-grow: 2;
+  min-width: 10%;
+  /* display: inline-block; */
   /* background-color: #c9c9c9; */
 }
 

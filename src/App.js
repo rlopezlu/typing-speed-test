@@ -12,8 +12,10 @@ class App extends Component {
       correctWords:[],
       wordsEntered:[],
       currentWord: 0,
-      timeLeft:10.00,
-      initialTime: 10,
+      charsPerMin:0,
+      countCorrect:0,
+      timeLeft:60,
+      initialTime: 60,
       counting:false,
       blocked: false
     }
@@ -30,7 +32,9 @@ class App extends Component {
     this.setState({
       currentWord: this.state.currentWord + 1,
       correctWords: this.state.correctWords.concat(correctOrFalse),
-      wordsEntered: this.state.wordsEntered.concat(inputWord)
+      wordsEntered: this.state.wordsEntered.concat(inputWord),
+      countCorrect: this.state.countCorrect + correctOrFalse,
+      charsPerMin: this.state.charsPerMin + (inputWord.length * correctOrFalse)
     })
   }
 
@@ -45,7 +49,7 @@ class App extends Component {
 
   //set state indicating timer is running
   startCounter = ()=>{
-    let interval = setInterval(this.myTick, 500)
+    let interval = setInterval(this.myTick, 100)
     this.setState({
       interval: interval,
       counting: true
@@ -54,12 +58,15 @@ class App extends Component {
 
   //stop and reset the counter (by clearing interval)
   resetCounter = () =>{
+    console.log("resetting");
     let interval = this.state.interval
     clearInterval(interval);
     this.setState({
       timeLeft: this.state.initialTime,
       counting:false,
       currentWord: 0,
+      charsPerMin: 0,
+      countCorrect: 0
     })
   }
 
@@ -67,13 +74,14 @@ class App extends Component {
   myTick = ()=>{
     if(this.state.timeLeft <= 0){
         let interval = this.state.interval
-        clearInterval(interval);
         this.setState({
-          blocked: true
+          blocked: true,
+          timeLeft: 0
         })
+        clearInterval(interval);
     } else {
       this.setState({
-        timeLeft: this.state.timeLeft - .5
+        timeLeft: this.state.timeLeft - .1
       })
     }
   }
@@ -96,11 +104,13 @@ class App extends Component {
       correctWords:[],
       wordsEntered:[],
       currentWord: 0,
-      timeLeft:10.00,
-      initialTime: 10,
+      timeLeft:60,
+      initialTime: 60,
       // readyToCount:false,
       counting:false,
-      blocked: false
+      blocked: false,      
+      charsPerMin: 0,
+      countCorrect: 0
     })
   }
 
@@ -120,6 +130,10 @@ class App extends Component {
           timeLeft={this.state.timeLeft}
           initialTime={this.state.initialTime}
           counting={this.state.counting}
+          countCorrect={this.state.countCorrect}
+          charsPerMin={this.state.charsPerMin}
+          wordsEntered={this.state.wordsEntered.length}
+          // accuracy={100 * this.state.countCorrect / this.state.wordsEntered.length}
         />
         <InputBarWrapper
           //methods passed as props
