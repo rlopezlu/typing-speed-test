@@ -8,9 +8,7 @@ var wordList = require('english-word-list')
 // TODO: cant click reset if it is ready (also style),
 //reset clickable while running,
 //reset clikable afterwards
-// TODO: reset autofocuses input so you can keep typing
-//TODO: app load autofocuses input so you can start typing
-
+//TODO: show . .. ... animation to show the counter is running
 
 class App extends Component {
   constructor(props){

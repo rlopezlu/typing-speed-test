@@ -39,8 +39,7 @@ export default function Completed(props){
     let correctWord = props.words[checkedIndex]
     return correctWord+word
   }
-
-  //TODO if mutliple miss spellings are the same, they will have the same key
+  
   return(
     <div className="Completed">
       {getCompleted().map((word, index)  => {

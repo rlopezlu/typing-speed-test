@@ -3,6 +3,8 @@ import '../Style/Stats.css'
 
 export default function Stats(props){
 
+
+
   //use words entered and correct words to find accuracy
   function setAccuracy(){
     if(props.wordsEntered === 0)
@@ -27,6 +29,14 @@ export default function Stats(props){
       return "redTime"
   }
 
+  function getAnimations(){
+    let animatedDots = [ '....','...', '..', '.']
+    let index = Math.ceil(props.timeLeft * 2) % 4
+    if(props.timeLeft < 60)
+      return animatedDots[index]
+      return "Ready"
+  }
+
   return(
     <div className="Stats">
       <div className="viewGrid">
@@ -36,7 +46,8 @@ export default function Stats(props){
       </div>
       <div className={"timeLeft "+getTimeColor()}>
         {/* Time left */}
-        <p>{setTime()} sec</p>
+        <p>{setTime()} sec </p>
+        <p> {getAnimations()} </p>
       </div>
       {/* <p>Time Elapsed {Math.floor(props.elapsed)} sec</p> */}
     </div>

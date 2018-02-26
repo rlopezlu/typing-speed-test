@@ -19,8 +19,7 @@ export default function InfoSettings(props){
       />
       <button
         onClick={props.handleReset}
-        className={getButtonColor()}
-      >
+        className={getButtonColor()}>
         Reset
       </button>
       {/* <Settings
