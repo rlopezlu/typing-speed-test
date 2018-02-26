@@ -5,10 +5,10 @@
   justify-content: center;
   font-family: 'Bellefair', serif;
   font-size: 45px;
-  /* overflow: hidden; */
-  /* flex-wrap: nowrap; */
+  overflow: hidden;
+  flex-wrap: nowrap;
   padding-top: 10px;
-  /* background-color: black; */
+  /* background-color: yellow; */
 }
 
 input{
@@ -18,9 +18,10 @@ input{
 }
 
 
-.left-wrap{
+/* .left-wrap{
   display: flex;
   overflow: hidden;
   flex-wrap:nowrap;
-  justify-content:space-between;
-}
+  justify-content:center;
+  background-color: yellow;
+} */

@@ -1,8 +1,9 @@
 .Current{
-  max-width: 40%;
+  max-width: 35%;
   /* margin-left: 5px; */
   /* margin-right: 5px; */
   /* background-color: grey; */
+  /* border-bottom: 1px solid black; */
 }
 
 .in-progress{

@@ -1,5 +1,5 @@
 .Completed{
-  overflow: hidden;
+  /* overflow: hidden; */
   flex-grow: 2;
   min-width: 10%;
   /* display: inline-block; */

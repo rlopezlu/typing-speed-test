@@ -1,9 +1,13 @@
 .Stats{
-  background-color: #3498db;
-  background: linear-gradient(to bottom right, #3498db, #2c3e50);
+  padding-top: 20px;
+  /* background-color: #3498db; */
+  /* background: linear-gradient(to bottom right, #3498db, #2c3e50); */
   color: white;
 
 }
+
+
+
 
 .viewGrid{
   display: flex;
@@ -19,5 +23,13 @@
 
 .timeLeft {
   font-size: 2.5em;
-  padding-bottom: 20px;
+  /* padding-bottom: 10px; */
+}
+
+
+.yellowTime{
+  color: #f1c40f;
+}
+.redTime{
+  color: #c0392b;
 }

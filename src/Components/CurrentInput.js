@@ -17,7 +17,7 @@ export default class Current extends Component{
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps){    
     if(nextProps.blocked === true || nextProps.counting === false){
       this.setState({
         inputChars : "",

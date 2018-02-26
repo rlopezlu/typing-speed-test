@@ -9,10 +9,21 @@
   color: white;
 }
 
+a{
+  color: white;
+}
+
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

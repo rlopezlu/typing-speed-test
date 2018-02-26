@@ -4,6 +4,14 @@ import InputBarWrapper from './Components/InputBarWrapper'
 import InfoSettings from './Components/InfoSettings'
 var wordList = require('english-word-list')
 
+// TODO: style reset button
+// TODO: cant click reset if it is ready (also style),
+//reset clickable while running,
+//reset clikable afterwards
+// TODO: reset autofocuses input so you can keep typing
+//TODO: app load autofocuses input so you can start typing
+
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -24,7 +32,12 @@ class App extends Component {
   //when the app loads, get a list of words
   componentDidMount(){
     // console.log(wordList.amount(5));
-    this.setState({words:wordList.amount(100)})
+    this.setState(
+      {
+        words:wordList.amount(100).sort((a,b) =>
+          {return 0.5 - Math.random()})
+        });
+        this.highlightInput()
   }
 
   //when a word is typed and submitted, move on to the next word
@@ -74,11 +87,11 @@ class App extends Component {
   myTick = ()=>{
     if(this.state.timeLeft <= 0){
         let interval = this.state.interval
+        clearInterval(interval);
         this.setState({
           blocked: true,
           timeLeft: 0
         })
-        clearInterval(interval);
     } else {
       this.setState({
         timeLeft: this.state.timeLeft - .1
@@ -89,6 +102,7 @@ class App extends Component {
   //get reference to main input field
   getInput =(inputItem) =>{
     this.input = inputItem
+    console.log("got reference to input");
   }
 
   //highlight (focus) the main input field
@@ -99,6 +113,7 @@ class App extends Component {
   //reset app to intial state
   handleReset = ()=>{
     console.log("clearing the state");
+    this.highlightInput();
     clearInterval(this.state.interval)
     this.setState({
       correctWords:[],
@@ -108,18 +123,17 @@ class App extends Component {
       initialTime: 60,
       // readyToCount:false,
       counting:false,
-      blocked: false,      
+      blocked: false,
       charsPerMin: 0,
-      countCorrect: 0
+      countCorrect: 0,
+      words:wordList.amount(100).sort((a,b) =>
+        {return 0.5 - Math.random()})
     })
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Speed test. Powered by React</h1>
-        </header>
         <InfoSettings
           //methods passed as props
           highlightInput={this.highlightInput}
@@ -149,6 +163,14 @@ class App extends Component {
           words={this.state.words}
           currentIndex={this.state.currentWord}
         />
+        <footer className="App-header">
+          <h1 className="App-title">Speed test. Powered by React</h1>
+          Check out this project on <a
+            href="https://github.com/rlopezlu/typing-speed-test"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Github</a>
+        </footer>
       </div>
     );
   }
