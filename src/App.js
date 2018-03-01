@@ -160,7 +160,7 @@ class App extends Component {
           words={this.state.words}
           currentIndex={this.state.currentWord}
         />
-        <footer className="App-header">
+        <footer className="App-footer">
           <h1 className="App-title">Speed test. Powered by React</h1>
           Check out this project on <a
             href="https://github.com/rlopezlu/typing-speed-test"

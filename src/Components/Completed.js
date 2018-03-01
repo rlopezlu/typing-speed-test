@@ -3,7 +3,7 @@ import '../Style/Completed.css'
 
 export default function Completed(props){
 
-  let amountToShow = 4;
+  let amountToShow = 3;
 
   function getCompleted(){
     if(props.currentIndex < amountToShow){
@@ -39,7 +39,7 @@ export default function Completed(props){
     let correctWord = props.words[checkedIndex]
     return correctWord+word
   }
-  
+
   return(
     <div className="Completed">
       {getCompleted().map((word, index)  => {
